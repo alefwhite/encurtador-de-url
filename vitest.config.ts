@@ -6,7 +6,7 @@ export default defineConfig({
   test: {
     dir: "./src", // Essa linha
     coverage: {
-      include: ["src/use-cases/**/*.ts", "src/test/**/*.ts"],
+      include: ["src/usecases/**/*.ts", "src/test/**/*.ts"],
     },
   },
 })
