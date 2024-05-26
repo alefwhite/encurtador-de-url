@@ -9,6 +9,7 @@
     "start": "node dist/index.js",
     "dev": "tsx watch src/server.ts",
     "test": "vitest run --dir src/usecases",
+    "test:staged": "vitest related --run",
     "test:watch": "vitest --dir src/usecases",
     "test:ci": "vitest run --coverage",
     "prepare": "husky"
