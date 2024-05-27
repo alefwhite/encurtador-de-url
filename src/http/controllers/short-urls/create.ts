@@ -9,12 +9,12 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       .url({ message: "Url inválida" }),
   })
   const { original_url } = body_schema.parse(request.body)
-  const makeCreateShortUrlsUseCase = makeCreateShortUrlUseCase()
+  const createShortUrlsUseCase = makeCreateShortUrlUseCase()
   let user_id
   if (request.user?.sub) {
     user_id = request.user.sub
   }
-  const short_url = await makeCreateShortUrlsUseCase.execute({
+  const short_url = await createShortUrlsUseCase.execute({
     original_url,
     user_id,
   })

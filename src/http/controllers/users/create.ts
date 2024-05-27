@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { makeCreateRegisterUseCase } from "@/usecases/factories/make-create-register-use-case"
-import { UserPresenter } from "@/http/presenters/user-presenter"
+import { UsersPresenter } from "@/http/presenters/users-presenter"
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const body_schema = z.object({
@@ -12,5 +12,5 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const { name, email, password } = body_schema.parse(request.body)
   const registerUserUseCase = makeCreateRegisterUseCase()
   const user = await registerUserUseCase.execute({ name, email, password })
-  return reply.status(201).send(UserPresenter.toJSON(user))
+  return reply.status(201).send(UsersPresenter.toJSON(user))
 }

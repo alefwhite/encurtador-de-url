@@ -1,6 +1,6 @@
 import { User } from "@/entities/user"
 
-export class UserPresenter {
+export class UsersPresenter {
   static toJSON(user: User) {
     return {
       id: user.id.toValue(),
