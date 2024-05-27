@@ -23,11 +23,12 @@ describe("Register Use Case", () => {
     expect(user.id.toValue()).toEqual(expect.any(String))
   })
   it("should hash user password upon registration", async () => {
-    const user = await sut.execute({
+    const request: CreateUserDTO = {
       name: "Romero Britto",
-      email: "romero_britto@gmail.com",
+      email: "omero_britto@gmail.com",
       password: "123456",
-    })
+    }
+    const user = await sut.execute(request)
     const isPasswordCorrectlyHashed = await compare("123456", user.password)
     expect(isPasswordCorrectlyHashed).toBe(true)
   })

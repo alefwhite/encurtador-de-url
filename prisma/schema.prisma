@@ -9,6 +9,34 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @default(uuid())
+  name       String
+  email      String     @unique
+  password   String
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  deleted_at DateTime?
+  short_urls ShortUrl[]
+
+  @@map("users")
+}
+
+model ShortUrl {
+  id           String    @id @default(uuid())
+  original_url String
+  short_code   String    @unique
+  click_count  Int       @default(0)
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  deleted_at   DateTime?
+
+  user_id String
+  user    User?  @relation(fields: [user_id], references: [id])
+
+  @@map("short_url")
 }

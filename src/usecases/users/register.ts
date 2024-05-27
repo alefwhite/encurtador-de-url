@@ -1,7 +1,7 @@
 import { IUsersRepository } from "@/repositories/users-repository"
 import { CreateUserDTO } from "@/dtos/user"
 import { UserAlreadyExistsError } from "@/usecases/errors/user-already-exists"
-import { hash } from "bcryptjs"
+import bcrypt from "bcryptjs"
 import { User } from "@/entities/user"
 
 export class RegisterUseCase {
@@ -12,7 +12,7 @@ export class RegisterUseCase {
     if (userWithSameEmail) {
       throw new UserAlreadyExistsError()
     }
-    const password_hash = await hash(password, 6)
+    const password_hash = await bcrypt.hash(password, 6)
     const user = User.create({
       name,
       email,
