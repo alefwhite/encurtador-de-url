@@ -22,7 +22,7 @@ export class ShortUrl extends Entity<ShortUrlProps> {
   }
 
   get click_count() {
-    return this.props.short_code
+    return this.props.click_count
   }
 
   get user_id() {

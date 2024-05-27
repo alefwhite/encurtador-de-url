@@ -7,8 +7,8 @@ export async function get(request: FastifyRequest, reply: FastifyReply) {
     short_code: z.string({ message: "Código curto é obrigatório" }),
   })
   const { short_code } = params_schema.parse(request.params)
-  const makeGetShortIrlBuShortCodeUseCase = makeGetShortUrlByShortCodeUseCase()
+  const getShortIrlBuShortCodeUseCase = makeGetShortUrlByShortCodeUseCase()
   const { original_url } =
-    await makeGetShortIrlBuShortCodeUseCase.execute(short_code)
+    await getShortIrlBuShortCodeUseCase.execute(short_code)
   reply.redirect(original_url)
 }

@@ -41,4 +41,24 @@ export class PrismaShortUrlsRepository implements IShortUrlsRepository {
       data: { click_count: { increment: 1 } },
     })
   }
+
+  async findByUserId(user_id: string): Promise<ShortUrl[]> {
+    const short_urls = await prisma.shortUrl.findMany({
+      where: { user_id },
+    })
+    return short_urls.map((short_url) =>
+      ShortUrl.restore(
+        {
+          original_url: short_url.original_url,
+          short_code: short_url.short_code,
+          click_count: short_url.click_count,
+          user_id: short_url.user_id,
+          created_at: short_url.created_at,
+          updated_at: short_url.updated_at,
+          deleted_at: short_url.deleted_at,
+        },
+        short_url.id,
+      ),
+    )
+  }
 }
