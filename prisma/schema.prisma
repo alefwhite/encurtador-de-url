@@ -35,8 +35,8 @@ model ShortUrl {
   updated_at   DateTime  @updatedAt
   deleted_at   DateTime?
 
-  user_id String
-  user    User?  @relation(fields: [user_id], references: [id])
+  user_id String?
+  user    User?   @relation(fields: [user_id], references: [id])
 
   @@map("short_url")
 }
