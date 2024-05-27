@@ -6,6 +6,7 @@ import useCaseErrors from "@/usecases/errors"
 import fastifyJwt from "@fastify/jwt"
 import fastifyCookie from "@fastify/cookie"
 import { appRoutes } from "@/http/routes"
+import { shortUrlsRoutes } from "@/http/controllers/short-urls/route"
 
 export const app = fastify()
 app.register(fastifyJwt, {
@@ -15,12 +16,13 @@ app.register(fastifyJwt, {
     signed: false,
   },
   sign: {
-    expiresIn: "10m",
+    expiresIn: "7d",
   },
 })
 app.register(fastifyCookie)
-app.register(usersRoutes)
 app.register(appRoutes)
+app.register(usersRoutes)
+app.register(shortUrlsRoutes)
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
     return reply.status(400).send({
