@@ -13,10 +13,13 @@ export async function authenticate(
   const { email, password } = authenticateBodySchema.parse(request.body)
   const authenticateUseCase = makeAuthenticateUseCase()
   const user = await authenticateUseCase.execute({ email, password })
-  const token = await reply.jwtSign({ sign: { sub: user.id.toValue() } })
-  const refreshToken = await reply.jwtSign({
-    sign: { sub: user.id.toValue(), expiresIn: "7d" },
-  })
+  const token = await reply.jwtSign({}, { sign: { sub: user.id.toValue() } })
+  const refreshToken = await reply.jwtSign(
+    {},
+    {
+      sign: { sub: user.id.toValue(), expiresIn: "7d" },
+    },
+  )
   return reply
     .setCookie("refreshToken", refreshToken, {
       path: "/",

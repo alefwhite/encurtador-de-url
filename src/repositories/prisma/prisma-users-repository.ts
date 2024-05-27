@@ -25,6 +25,7 @@ export class PrismaUsersRepository implements IUsersRepository {
   async create(data: User): Promise<User> {
     const user = await prisma.user.create({
       data: {
+        id: data.id.toValue(),
         name: data.name,
         email: data.email,
         password: data.password,
