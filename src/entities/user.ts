@@ -41,8 +41,8 @@ export class User extends Entity<UserProps> {
   }
 
   static restore(props: UserProps, id: string) {
-    const userId = new UniqueEntityID(id)
-    const user = new User(props, userId)
+    const user_id = new UniqueEntityID(id)
+    const user = new User(props, user_id)
     return user
   }
 }

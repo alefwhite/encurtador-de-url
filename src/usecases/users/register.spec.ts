@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest"
-import { CreateUserDTO } from "@/dtos/user"
+import { CreateUserDTO } from "@/dtos/users"
 import { RegisterUseCase } from "@/usecases/users/register"
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository"
 import bcrypt from "bcryptjs"
