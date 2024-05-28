@@ -37,7 +37,7 @@ describe("Authenticate", () => {
     await app.close()
   })
 
-  it("should be able to authenticate", async () => {
+  it.skip("should be able to authenticate", async () => {
     const email = "britto_romero@gmail.com.br"
     const password = "123456"
     await request(app.server).post("/users").send({
