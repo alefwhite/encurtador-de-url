@@ -5,7 +5,7 @@ import { makeCreateShortUrlUseCase } from "@/usecases/factories/make-create-shor
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const body_schema = z.object({
     original_url: z
-      .string({ message: "Url original é obrigatório" })
+      .string({ message: "Url original é obrigatória." })
       .url({ message: "Url inválida" }),
   })
   const { original_url } = body_schema.parse(request.body)
