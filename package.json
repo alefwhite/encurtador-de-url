@@ -11,7 +11,7 @@
     "dev": "tsx watch src/server.ts",
     "test": "vitest run --dir src/usecases",
     "test:integration": "vitest run --dir src/test/integration",
-    "test:staged": "vitest related --run",
+    "test:staged": "vitest related --run --dir src/usecases",
     "test:watch": "vitest --dir src/usecases",
     "test:ci": "vitest run --coverage",
     "test:ui": "vitest --ui",
