@@ -1,6 +1,13 @@
 import { z } from "zod"
-import "dotenv/config"
+import { config } from "dotenv"
 
+if (process.env.NODE_ENV === "test") {
+  config({
+    path: ".env.test",
+  })
+} else {
+  config()
+}
 const envSchema = z.object({
   PROTOCOL: z.string(),
   HOST: z.string(),

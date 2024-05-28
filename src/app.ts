@@ -19,10 +19,23 @@ app.register(fastifyJwt, {
     expiresIn: "7d",
   },
 })
+app.register(import("@fastify/swagger"), {
+  openapi: {
+    info: {
+      title: "Documentação com Swagger",
+      description: "API de Encurtador de URL",
+      version: "1.0.0",
+    },
+  },
+})
+app.register(import("@fastify/swagger-ui"), {
+  routePrefix: "/docs",
+})
 app.register(fastifyCookie)
 app.register(appRoutes)
 app.register(usersRoutes)
 app.register(shortUrlsRoutes)
+
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
     return reply.status(400).send({
