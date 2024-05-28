@@ -16,7 +16,7 @@ describe("Register Use Case", () => {
   it("should be able a create user", async () => {
     const request: CreateUserDTO = {
       name: "Romero Britto",
-      email: "omero_britto@gmail.com",
+      email: "romero_britto@gmail.com",
       password: "123456",
     }
     const user = await sut.execute(request)

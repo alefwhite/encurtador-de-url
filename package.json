@@ -5,6 +5,7 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
+    "preinstall": "node check-version.js",
     "build": "tsup src --out-dir dist",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
@@ -17,6 +18,9 @@
     "seed": "tsx prisma/seed/seed.ts",
     "migrate:dev": "npx prisma migrate dev",
     "prisma:generate": "npx prisma generate"
+  },
+  "engines": {
+    "node": ">=20.13.1"
   },
   "repository": {
     "type": "git",
@@ -32,6 +36,7 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.6",
     "@types/node": "^20.12.12",
+    "@types/semver": "7.5.8",
     "@types/supertest": "6.0.2",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
@@ -60,6 +65,7 @@
     "dotenv": "16.4.5",
     "dotenv-cli": "7.4.2",
     "fastify": "4.27.0",
+    "semver": "7.6.2",
     "zod": "3.23.8"
   }
 }
