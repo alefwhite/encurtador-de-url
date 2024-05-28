@@ -1,3 +1,4 @@
 node_modules
-build
+dist
 vitest.config.ts
+check-version.js
