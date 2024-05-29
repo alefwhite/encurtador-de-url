@@ -22,6 +22,7 @@ export class ShortUrl extends Entity<ShortUrlProps> {
   }
 
   get click_count() {
+    if (!this.props.click_count) return 0
     return this.props.click_count
   }
 
@@ -39,6 +40,10 @@ export class ShortUrl extends Entity<ShortUrlProps> {
 
   get deleted_at() {
     return this.props.deleted_at
+  }
+
+  set click_count(increment: number) {
+    this.props.click_count = increment
   }
 
   static create(props: ShortUrlProps, id?: UniqueEntityID) {

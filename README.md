@@ -27,6 +27,8 @@ npm run prisma:generate
 # Inicie o aplicativo
 npm run dev
 
+# Swagger
+http://localhost:PORTA-DO-ENV/docs/
 ```
 
 # Execução de Container com Aplicação Node.js usando Docker Compose
@@ -55,7 +57,6 @@ O argumento -d inicia os contêineres em segundo plano.
 
 Acesse a aplicação em seu navegador:
 
-arduino
 Copiar código
 http://localhost:3333
 Parando e Removendo os Contêineres
