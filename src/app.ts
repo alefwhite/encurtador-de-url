@@ -2,7 +2,7 @@ import fastify from "fastify"
 import { ZodError } from "zod"
 import { env } from "@/env"
 import { usersRoutes } from "@/http/controllers/users/route"
-import useCaseErrors from "@/usecases/errors"
+import { useCaseErrors, statusCode } from "@/usecases/errors"
 import fastifyJwt from "@fastify/jwt"
 import fastifyCookie from "@fastify/cookie"
 import { appRoutes } from "@/http/routes"
@@ -25,6 +25,16 @@ app.register(import("@fastify/swagger"), {
       title: "Documentação com Swagger",
       description: "API de Encurtador de URL",
       version: "1.0.0",
+    },
+  },
+  swagger: {
+    // properties...
+    securityDefinitions: {
+      Authorization: {
+        type: "apiKey",
+        name: "Authorization",
+        in: "header",
+      },
     },
   },
 })
@@ -51,7 +61,7 @@ app.setErrorHandler((error, _, reply) => {
   }
 
   if (useCaseErrors().includes(error.name)) {
-    return reply.status(400).send({
+    return reply.status(statusCode(error.name)).send({
       message: error.message,
     })
   }

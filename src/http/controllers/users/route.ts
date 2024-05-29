@@ -1,6 +1,5 @@
 import { FastifyInstance } from "fastify"
 import { create } from "@/http/controllers/users/create"
-import { verifyJwt } from "@/http/middlewares/verify-jwt"
 import { create_users } from "@/schemas/users"
 
 export async function usersRoutes(app: FastifyInstance) {
@@ -11,7 +10,4 @@ export async function usersRoutes(app: FastifyInstance) {
     },
     create,
   )
-
-  /** Authenticated */
-  app.get("/me", { onRequest: [verifyJwt] }, create)
 }
