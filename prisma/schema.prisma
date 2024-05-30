@@ -38,5 +38,5 @@ model ShortUrl {
   user_id String?
   user    User?   @relation(fields: [user_id], references: [id])
 
-  @@map("short_url")
+  @@map("short_urls")
 }
